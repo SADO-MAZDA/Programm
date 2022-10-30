@@ -1,0 +1,124 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Программа_из_пяти_команд
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            const string CommandExit = "Выход";
+            const string CommandRegostration = "Регистрация";
+            const string CommandEntrance = "Вход";
+            const string CommandFont = "Шрифт";
+            const string CommandBackground = "Фон";
+            string userName = "";
+            int userAge;
+            const int minUserAge = 18;
+            string userInput = "";
+            const string exitProgram = "EXIT";
+            string userPassword = "";
+            string userPasswordEntrance = "";
+            Console.WriteLine("Для размещения своей рекламы на баннере выберите дальнейшие действия");
+
+            while (userInput != exitProgram)
+            {
+                Console.WriteLine(" \n " +
+                "Зарегистрироваться - Регистрация \n Войти в учетную запись - Вход \n Настроить цвет шрифта  - Шрифт \n " +
+                "Настроить цвет фона баннера - Фон \n Покинуть программу - Выход");
+                userInput = Console.ReadLine();
+
+                switch (userInput)
+                {
+                    case CommandRegostration:
+                        Console.Write(" Ваше имя: ");
+                        userName = Console.ReadLine();
+                        Console.Write("Ваш возраст: ");
+                        userAge = Convert.ToInt32(Console.ReadLine());
+
+                        if (userAge >= minUserAge)
+                        {
+                            Console.Write("Придумайте пароль: ");
+                            userPassword = Console.ReadLine();
+                            Console.WriteLine("Отлично " + userName + " . Нажмите любую кнопку для выхода в главное меню");
+                            Console.ReadKey();
+                        }
+                        else
+                        {
+                            Console.WriteLine(" Вам необходимо подрасти еще на " + (minUserAge - userAge) + " лет.");
+                        }
+                        break;
+                    case CommandEntrance:
+                        Console.Write("Введите пароль:");
+                        userPasswordEntrance = Console.ReadLine();
+
+                        if (userPassword == userPasswordEntrance)
+                        {
+                            Console.WriteLine(userName + " , рады приветствовать вас . Всем зарегистрировавшимся пользователям мы дарим скидку 10% .");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Неверный пароль.");
+                        }
+                        break;
+                    case CommandFont:
+                        Console.WriteLine("Выберите подходящий цвет. \n (синий ,зелёный ,красный ,чёрный )");
+                        userInput = Console.ReadLine();
+
+                        switch (userInput)
+                        {
+                            case "синий":
+                                Console.ForegroundColor = ConsoleColor.DarkBlue;
+                                break;
+                            case "зелёный":
+                                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                                break;
+                            case "красный":
+                                Console.ForegroundColor = ConsoleColor.DarkRed;
+                                break;
+                            case "чёрный":
+                                Console.ForegroundColor = ConsoleColor.Black;
+                                break;
+                            default:
+                                Console.WriteLine("Попробуйте ещё раз.");
+                                break;
+                        }
+                        break;
+                    case CommandBackground:
+                        Console.WriteLine("Выберите подходящий цвет. \n (синий ,зелёный ,красный ,белый)");
+                        userInput = Console.ReadLine();
+
+                        switch (userInput)
+                        {
+                            case "синий":
+                                Console.BackgroundColor = ConsoleColor.DarkBlue;
+                                break;
+                            case "зелёный":
+                                Console.BackgroundColor = ConsoleColor.DarkGreen;
+                                break;
+                            case "красный":
+                                Console.BackgroundColor = ConsoleColor.DarkRed;
+                                break;
+                            case "белый":
+                                Console.BackgroundColor = ConsoleColor.White;
+                                break;
+                            default:
+                                Console.WriteLine("Попробуйте ещё раз.");
+                                break;
+                        }
+                        break;
+                    case CommandExit:
+                        Console.WriteLine("До свидания.");
+                        Console.ReadKey();
+                        break;
+                    default:
+                        Console.WriteLine("Попробуйте ещё раз.");
+                        break;
+                }
+            }
+        }
+    }
+}
